@@ -15,4 +15,4 @@ const block=document.querySelector('#block'),print=document.querySelector('#prin
     { "name": "Grey", "hex": "#8a8985" }
   ]
 }
-;const inks=document.querySelector('#inks');sturdy.colours.forEach((c,i)=>{const x=document.createElement('button');x.className='ink'+(i===0?' active':'');x.style.background=c.hex;x.title=c.name;x.onclick=()=>{document.querySelectorAll('.ink').forEach(y=>y.classList.remove('active'));x.classList.add('active');ink=c.hex};inks.appendChild(x)});size();
+;const inks=document.querySelector('#inks');sturdy.colours.forEach((c,i)=>{const x=document.createElement('button');x.className='ink'+(i===0?' active':'');x.style.setProperty('--swatch',c.hex);x.title=c.name;x.onclick=()=>{document.querySelectorAll('.ink').forEach(y=>y.classList.remove('active'));x.classList.add('active');ink=c.hex};inks.appendChild(x)});size();
