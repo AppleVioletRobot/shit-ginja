@@ -7,3 +7,9 @@
 
 .tools{position:relative}
 .tools>.output-actions{margin-top:auto;padding-bottom:8px;display:flex;gap:6px;justify-content:center}
+
+.block-sheet{position:relative}
+.block-sheet.active-sheet{display:grid;place-items:center}
+.block-sheet #draft{position:absolute;pointer-events:none;background:transparent;box-shadow:none}
+.pencil-tool{font-family:Arial,sans-serif;font-size:.8rem}
+.pencil-tool.active{background:#d8ff58;box-shadow:3px 3px 0 #171717}
