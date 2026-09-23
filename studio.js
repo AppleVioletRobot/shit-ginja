@@ -15,19 +15,19 @@ const block=document.querySelector('#block'),print=document.querySelector('#prin
     { "name": "Grey", "hex": "#8a8985" }
   ]
 }
-;const inkOpacity={
-  "#171717":1,
-  "#FFFFFF":0.65,
-  "#b94f48":0.65,
-  "#d58a45":0.65,
-  "#d5b84b":0.5,
-  "#668568":0.65,
-  "#557b98":0.65,
-  "#26384A":0.8,
-  "#7b6687":0.65,
-  "#c78382":0.65,
-  "#795548":0.8,
-  "#8a8985":0.8
+;const inkOpacity = {
+  '#171717': 1,
+  '#FFFFFF': 1,
+  '#b94f48': 0.5,
+  '#d58a45': 0.5,
+  '#d5b84b': 0.5,
+  '#668568': 0.5,
+  '#557b98': 0.5,
+  '#26384A': 0.5,
+  '#7b6687': 0.5,
+  '#c78382': 0.5,
+  '#795548': 0.5,
+  '#8a8985': 0.5
 };const inks=document.querySelector('#inks');sturdy.colours.forEach((c,i)=>{const x=document.createElement('button');x.className='ink'+(i===0?' active':'');x.style.setProperty('--swatch',c.hex);x.title=c.name;x.onclick=()=>{document.querySelectorAll('.ink').forEach(y=>y.classList.remove('active'));x.classList.add('active');ink=c.hex};inks.appendChild(x)});size();restoreLocal();
 const viewToggle=document.querySelector('#view-toggle'),blockSheet=document.querySelector('.block-sheet'),printSheet=document.querySelector('.print-sheet');let showingPrint=false;function setView(printView){showingPrint=printView;blockSheet.classList.toggle('active-sheet',!printView);printSheet.classList.toggle('active-sheet',printView);viewToggle.textContent=printView?'BLOCK':'PRINT';viewToggle.classList.toggle('show-print',printView)}viewToggle.onclick=()=>setView(!showingPrint);document.querySelector('#printBtn').addEventListener('click',()=>setView(true));
 function outputCanvas(){return showingPrint?print:block}
