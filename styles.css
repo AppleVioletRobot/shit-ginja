@@ -4,3 +4,6 @@
 .output-actions{display:flex;gap:6px;justify-content:center}
 .output-actions button{min-width:48px}
 @media(max-height:700px){.print-actions{margin-top:20vh}}
+
+.tools{position:relative}
+.tools>.output-actions{margin-top:auto;padding-bottom:8px;display:flex;gap:6px;justify-content:center}
