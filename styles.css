@@ -13,3 +13,8 @@
 .block-sheet #draft{position:absolute;pointer-events:none;background:transparent;box-shadow:none}
 .pencil-tool{font-family:Arial,sans-serif;font-size:.8rem}
 .pencil-tool.active{background:#d8ff58;box-shadow:3px 3px 0 #171717}
+
+.tools>.file-actions{margin-top:auto;width:64px;display:grid;gap:6px;padding-top:4px;padding-bottom:0}
+.file-actions button{width:64px;min-height:34px;padding:5px 2px;border:2px solid #171717;border-radius:7px;background:#fff;color:#171717;font:800 .64rem Arial,Helvetica,sans-serif}
+.file-actions #saveBtn{background:#d8ff58}
+@media(max-width:760px){.tools>.file-actions{width:50px;gap:5px}.file-actions button{width:50px;min-height:30px;font-size:.53rem;padding:4px 1px}}
