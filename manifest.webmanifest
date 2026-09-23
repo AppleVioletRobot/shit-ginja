@@ -1,0 +1,8 @@
+{
+  "name": "Shit Ginja",
+  "short_name": "Ginja",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#eee9df",
+  "theme_color": "#211f1c"
+}
