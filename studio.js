@@ -1,0 +1,18 @@
+const block=document.querySelector('#block'),print=document.querySelector('#print'),b=block.getContext('2d'),p=print.getContext('2d');let W=4,ink='#252321',drawing=false,last=null,undo=[];const BLOCK='#d6a46c';function size(){const n=Math.min(560,Math.floor(block.getBoundingClientRect().width*devicePixelRatio));for(const c of[block,print]){c.width=n;c.height=n}newBlock()}function newBlock(){b.globalCompositeOperation='source-over';b.fillStyle=BLOCK;b.fillRect(0,0,block.width,block.height);p.fillStyle='#f6f0e4';p.fillRect(0,0,print.width,print.height);undo=[]}function snap(){undo.push(b.getImageData(0,0,block.width,block.height));if(undo.length>30)undo.shift()}function pos(e){const r=block.getBoundingClientRect(),q=e.touches?e.touches[0]:e;return{x:(q.clientX-r.left)*block.width/r.width,y:(q.clientY-r.top)*block.height/r.height}}function carve(a,z){const dx=z.x-a.x,dy=z.y-a.y,L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L,w=W*devicePixelRatio;b.globalCompositeOperation='destination-out';b.beginPath();b.moveTo(a.x+nx*w/2,a.y+ny*w/2);b.lineTo(z.x,z.y);b.lineTo(a.x-nx*w/2,a.y-ny*w/2);b.closePath();b.fill()}block.onpointerdown=e=>{e.preventDefault();snap();drawing=true;last=pos(e);block.setPointerCapture(e.pointerId)};block.onpointermove=e=>{if(!drawing)return;e.preventDefault();const q=pos(e);carve(last,q);last=q};block.onpointerup=block.onpointercancel=()=>{drawing=false;last=null};document.querySelectorAll('.gouge').forEach(x=>x.onclick=()=>{document.querySelectorAll('.gouge').forEach(y=>y.classList.remove('active'));x.classList.add('active');W=+x.dataset.w});document.querySelector('#undo').onclick=()=>{const x=undo.pop();if(x)b.putImageData(x,0,0)};document.querySelector('#newBtn').onclick=newBlock;document.querySelector('#printBtn').onclick=()=>{p.fillStyle='#f6f0e4';p.fillRect(0,0,print.width,print.height);const im=b.getImageData(0,0,block.width,block.height),d=im.data,stamp=p.createImageData(print.width,print.height),s=stamp.data;for(let y=0;y<block.height;y++)for(let x=0;x<block.width;x++){const i=(y*block.width+x)*4,j=(y*block.width+(block.width-1-x))*4;if(d[i+3]){s[j]=parseInt(ink.slice(1,3),16);s[j+1]=parseInt(ink.slice(3,5),16);s[j+2]=parseInt(ink.slice(5,7),16);s[j+3]=255}}p.putImageData(stamp,0,0)};const sturdy={
+  "name": "Original",
+  "colours": [
+    { "name": "Black", "hex": "#171717" },
+    { "name": "White", "hex": "#FFFFFF" },
+    { "name": "Brick red", "hex": "#b94f48" },
+    { "name": "Ochre orange", "hex": "#d58a45" },
+    { "name": "Mustard yellow", "hex": "#d5b84b" },
+    { "name": "Sage green", "hex": "#668568" },
+    { "name": "Slate blue", "hex": "#557b98" },
+    { "name": "Dark navy", "hex": "#26384A" },
+    { "name": "Muted purple", "hex": "#7b6687" },
+    { "name": "Dusty pink", "hex": "#c78382" },
+    { "name": "Brown", "hex": "#795548" },
+    { "name": "Grey", "hex": "#8a8985" }
+  ]
+}
+;const inks=document.querySelector('#inks');sturdy.colours.forEach((c,i)=>{const x=document.createElement('button');x.className='ink'+(i===0?' active':'');x.style.background=c.hex;x.title=c.name;x.onclick=()=>{document.querySelectorAll('.ink').forEach(y=>y.classList.remove('active'));x.classList.add('active');ink=c.hex};inks.appendChild(x)});size();
